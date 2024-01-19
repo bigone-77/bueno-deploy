@@ -1,4 +1,5 @@
-import axios from 'axios';
+
+import axios from '../../../api/axios';
 import { QnaDataProps as AnswerDataProps } from '../../../types/QnaDataProps';
 import { useState } from 'react';
 

@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import First from "../../components/Member/Order/First";
-import SecondCard from "../../components/Member/Order/Second";
-import Third from "../../components/Member/Order/Third";
 import Container from "../../components/utils/Container"
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { OrderMemberInfoProps } from "../../types/Order/OrderMemberInfoProps";
 import { OrderItemListProps } from "../../types/Order/OrderItemListProps";
 import EmptyState from "../../components/utils/EmptyState";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import Contents from '../../components/Member/Order/Contents';
+import axios from '../../api/axios';
 
 
 

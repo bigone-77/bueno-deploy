@@ -7,9 +7,10 @@ import { Categories } from "../../../../components/MainNav/CategoryItems";
 import CategoryBox from "../CategoryBox";
 import Input from "../../../../components/utils/Input";
 import Button from "../../../../components/utils/Button";
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../../../api/axios';
 
 
 
@@ -28,7 +29,6 @@ const PlusProductPage = () => {
         },
     } = useForm<FieldValues>({
         defaultValues: {
-            image: '',
             name: '',
             info: '',
             price: 0,
@@ -38,46 +38,53 @@ const PlusProductPage = () => {
             weightUnit: '',
         }
     });
-
-    const image = watch('image');
     const category_name = watch('category_name');
+
+    const [image, setImage] = useState<File | null>(null);
+    console.log(image);
+    
+    
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
 
         setIsLoading(true);
-        console.log(data);  // data 변수명 checking
-        
-        axios.post('/admin/product/upload', data)
-            .then(response => {
-                console.log(response);
-                toast.success("상품 등록이 완료되었습니다");
-                navigate('/admin/product');
-            })
-            .catch(error => {
-                console.log(error);
-                toast.error("상품 등록에 실패하였습니다");
-            });
-            setIsLoading(false);
+        const formData = new FormData();
+        formData.append('image', image!);
+        formData.append('data', new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+    
+        axios.post('/admin/product/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response => {
+            console.log(response.data);
+            toast.success("상품 등록이 완료되었습니다");
+            navigate('/admin/product');
+        })
+        .catch(error => {
+            console.log(error);
+            toast.error("상품 등록에 실패하였습니다");
+        });
+
+        setIsLoading(false);
     }
     
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value);
     }
-
-    const handleFileUrlChange = (url: string) => {
-        const modifiedUrl = url.split('.jpg')[0] + '.jpg';
-        setCustomValue('image', modifiedUrl);
-    }
-
+    
     return (
         <Container>
             <div className='max-w-screen-lg mx-auto my-10'>
                 <h1 className="mb-4 text-6xl font-bold">상품 등록</h1>
                 <form className="flex flex-col justify-center gap-10" onSubmit={handleSubmit(onSubmit)}>
                     <ImageUpload 
-                        onFileUrlChange={handleFileUrlChange}
                         value={image}
+                        setImage={setImage}
                     />
                     
                     <div 

@@ -1,8 +1,9 @@
-import axios from 'axios';
+
 import { useState } from 'react';
 import { IoCheckmark } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from '../../../api/axios';
 
 interface FindPwProps {
   id: string;

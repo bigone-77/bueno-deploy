@@ -3,13 +3,13 @@ import Button from "../../../../components/utils/Button";
 import Input from "../../../../components/utils/Input";
 import CategoryBox from "../CategoryBox";
 import { Categories } from "../../../../components/MainNav/CategoryItems";
-import ImageUpload from "../ImageUpload";
 import Container from "../../../../components/utils/Container";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { ProductProps } from "../../../../types/ProductProps";
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
+import axios from '../../../../api/axios';
 
 interface ModifyProductProps extends ProductProps {
     setShowModify:  React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,15 +48,11 @@ const ModifyProduct = ({
             weightUnit: weightUnit,
         }
     });
-
-    const image = watch('image');
     const category_name = watch('category_name');
-    
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
-
-        console.log(data);  // 수정하려는 상품 정보 로그로 확인
+        
         axios.put(`/admin/product/modify/${id}`, data)
             .then(response => {
                 console.log(response);
@@ -75,21 +71,11 @@ const ModifyProduct = ({
         setValue(id, value);
     }
 
-    const handleFileUrlChange = (url: string) => {
-        const modifiedUrl = url.split('.jpg')[0] + '.jpg';
-        setCustomValue('image', modifiedUrl);
-    }
-
     return (
         <Container>
             <div className='max-w-screen-lg mx-auto my-10'>
-                <h1 className="mb-4 text-6xl font-bold">상품 등록</h1>
+                <h1 className="mb-4 text-6xl font-bold">상품 변경</h1>
                 <form className="flex flex-col justify-center gap-10" onSubmit={handleSubmit(onSubmit)}>
-                    <ImageUpload 
-                        onFileUrlChange={handleFileUrlChange}
-                        value={image}
-                    />
-                    
                     <div 
                         className='
                         grid 

@@ -1,16 +1,33 @@
-import { useFileUpload } from '../../../utils/useFileUpload'
+import { toast } from 'react-toastify';
 
 interface UploadInputProps {
-    onFileUrlChange: (url: string) => void;
+    setValue: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const UploadInput = ({
-    onFileUrlChange
+    setValue
 }: UploadInputProps) => {
-    const handleFileUpload = useFileUpload({ onFileUrlChange });
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const maxFileSizeInBytes = 1000 * 1024; 
+
+        if (!e.target.files) {
+            return;
+        }
+        const selectedFile = e.target.files[0];
+
+        if (selectedFile.size > maxFileSizeInBytes) {
+            toast.error('파일 크기는 1000KB를 초과할 수 없습니다.');
+            e.target.value = ''; // 파일 선택을 취소합니다.
+            return;
+        }
+        setValue(selectedFile);
+    };
 
     return (
-        <input type='file' onChange={handleFileUpload} />
+        <input
+            type="file"
+            onChange={handleFileUpload}
+        />
     )
 }
 

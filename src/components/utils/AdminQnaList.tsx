@@ -2,8 +2,9 @@ import Modal from "react-modal";
 
 import { useEffect, useState } from "react";
 import { FcAnswers } from "react-icons/fc";
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
+import axios from '../../api/axios';
 
 interface AdminQnaListProps {
     qnaId: number;

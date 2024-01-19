@@ -1,13 +1,13 @@
 interface PreviewUploadProps {
-    fileUrl: string | null;
+    imageSrc: File | null;
 }
 
 const PreviewUpload = ({
-    fileUrl
+    imageSrc
 }: PreviewUploadProps) => {
     return (
         <div>
-            {fileUrl && <img src={fileUrl} alt={fileUrl} className="object-cover h-32 w-28"/>}
+            {imageSrc && <img src={URL.createObjectURL(imageSrc)} alt="" className="object-cover h-32 w-28"/>}
         </div>
     )
 }

@@ -4,10 +4,11 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../../utils/Button';
 import { UpdateFieldProps } from './UpdateField';
 import Input from '../../utils/Input';
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux';
 import { updateField } from '../../../redux/slices/memberEditSlice';
+import axios from '../../../api/axios';
 
 const UpdateZipcode = ({
     prevValue,

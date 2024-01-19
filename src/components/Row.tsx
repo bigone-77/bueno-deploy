@@ -2,10 +2,11 @@ import ProductCard from "./ProductCard";
 
 import { AiFillFire } from "react-icons/ai";
 import { useCallback, useEffect } from "react";
-import axios from "axios";
+
 import { setProduct } from '../redux/slices/productSlice';
 import { RootState } from '../redux';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from '../api/axios';
 
 interface RowProps {
     title: string;

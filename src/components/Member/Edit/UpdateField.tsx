@@ -2,12 +2,13 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "../../utils/Input";
 import { Dispatch, SetStateAction, useState } from "react";
 import Button from "../../utils/Button";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { updateField } from "../../../redux/slices/memberEditSlice";
 import { updateCurrentUserNickname } from "../../../redux/slices/currentUserSlice";
 import { toast } from "react-toastify";
+import axios from '../../../api/axios';
 
 export interface UpdateFieldProps {
     prevValue?: string;
@@ -63,6 +64,7 @@ const UpdateField = ({
                         disabled={isLoading}
                         register={register}
                         errors={errors}
+                        placeholder={`${fieldName === "휴대전화" ? "전화번호 사이에 - 빼주세요" : ""}`}
                         required
                     />
                 </div>

@@ -3,11 +3,12 @@ import { ProductProps } from '../../types/ProductProps'
 import ConfirmCart from './ConfirmCart';
 import ProductWeightOption from '../ProductWeightOption';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import { removeCartData } from '../../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../api/axios';
 
 const CartContents = ({
     id,

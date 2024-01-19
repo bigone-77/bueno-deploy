@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { ProductProps } from "../types/ProductProps";
+import axios from '../api/axios';
 
 interface UseFavorite {
     productId?: number;

@@ -18,7 +18,7 @@ const Edit = () => {
     useEffect(() => {
         dispatch(setEditUser({
             email: response?.data.email,
-            pw: response?.data.pw,
+            pw: response?.data.pw.slice(0, 7),
             username: response?.data.username,
             phone: response?.data.phone,
             nickname: response?.data.nickname,

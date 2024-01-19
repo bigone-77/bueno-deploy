@@ -37,11 +37,11 @@ const LoginPage = () => {
 
 
     const KakaoLoginHandler = () => {
-        window.location.href = "http://localhost:8080/oauth2/authorization/kakao"
+        window.location.href = "http://ec2-43-201-122-183.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao"
     }
 
     const GoogleLoginHandler = () => {
-        window.location.href = "http://localhost:8080/oauth2/authorization/google"
+        window.location.href = "http://ec2-43-201-122-183.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/google"
     }
     
     return (

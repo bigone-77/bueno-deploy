@@ -5,9 +5,10 @@ import Input from "../../../components/utils/Input";
 import Button from "../../../components/utils/Button";
 import { DevTool } from "@hookform/devtools";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/slices/currentUserSlice';
+import axios from '../../../api/axios';
 
 const AdminLoginPage = () => {
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const AdminLoginPage = () => {
                 dispatch(setCurrentUser({
                     id: response.data.adminId,
                     nickname: response.data.nickname,
+                    point: response.data.point
                 }));
             })
             .catch(error => {

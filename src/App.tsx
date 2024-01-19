@@ -99,9 +99,6 @@ function App() {
               <Route index element={<MyPage />} />
             </Route>  :  <Route path='/member/mypage/:path' element={<Navigate to="/auth/login" />} />
           }
-
-          
-
         </Route>
         <Route path=":bulabula" element={<ErrorPage />} />
       </Routes>

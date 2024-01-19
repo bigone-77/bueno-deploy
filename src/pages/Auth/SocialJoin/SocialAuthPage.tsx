@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import Container from '../../../components/utils/Container'
-import axios from 'axios';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/slices/currentUserSlice';
+import axios from '../../../api/axios';
 
 const SocialAuthPage = () => {
   const location = useLocation();
@@ -23,7 +24,8 @@ const SocialAuthPage = () => {
       });
       dispatch(setCurrentUser({
         id: response.data.id,
-        nickname: response.data.nickname
+        nickname: response.data.nickname,
+        point: response.data.point
       }));
       navigate('/');
       console.log(response);

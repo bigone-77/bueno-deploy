@@ -6,9 +6,10 @@ import Button from "../../utils/Button";
 import { UpdateFieldProps } from "./UpdateField";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux";
-import axios from "axios";
+
 import { updateField } from "../../../redux/slices/memberEditSlice";
 import { toast } from "react-toastify";
+import axios from '../../../api/axios';
 
 const UpdatePasswordField = ({
     fieldName,

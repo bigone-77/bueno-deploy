@@ -1,5 +1,6 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestConfig } from "axios";
+import { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
+import axios from '../api/axios';
 
 const useGetFetchedData = (axiosParams: RawAxiosRequestConfig) => {
     const [response, setResponse] = useState<AxiosResponse>();

@@ -23,6 +23,7 @@ const MainNavbar = () => {
 
     const currentUserData = useSelector((state: RootState) => state.currentUser);
     const nickName = currentUserData.nickname;
+    const userPoint = currentUserData.point;
 
     const searchHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -37,8 +38,9 @@ const MainNavbar = () => {
         <Container>
             <div className={`fixed h-52 top-0 left-0 right-0 z-20 ${show ? 'bg-zinc-50' : 'bg-transparent'} px-10`}>
                 <div className={`flex ${nickName ? 'justify-between' : 'justify-end'} w-full px-10 py-5`}>
-                    {nickName && <span className='flex gap-3 text-gray-300 text-light'>
+                    {nickName && userPoint && <span className='flex gap-3 text-gray-300 text-light'>
                         <p className='ml-2 text-2xl text-black font-Cafe24Shiningstar'>Hello {nickName}</p>
+                        <p className='text-2xl text-black font-Cafe24Shiningstar'>{userPoint} point</p>
                     </span>}
                     <ul className='flex items-center gap-4 text-sm font-light'>
                         {nickName ? <Link to='/member/mypage/edit'><li>내정보수정</li></Link> : <Link to="/auth/join"><li>회원가입</li></Link>}

@@ -4,9 +4,10 @@ import { FaStar } from "react-icons/fa6";
 import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 import { useState } from 'react';
+import axios from '../../api/axios';
 
 interface ReviewListProps {
     profileIcon: IconType;
@@ -37,8 +38,7 @@ const ReviewList = ({
     const [isRecommended, setIsRecommended] = useState(false);
 
     const recommendHandler = async () => {
-        setIsRecommended(!isRecommended);
-        if (isRecommended) {
+        if (isRecommended) {    // 파란색 눌렀을 때
             await axios.patch(`/review/${memberId}/${reviewId}`)
                 .then(response => {
                     toast.success('따봉을 취소했습니다.');
@@ -48,16 +48,19 @@ const ReviewList = ({
                     toast.error(error.response.data.message);
                     fetchData();
                 })
-        } else 
+        } else // 검정색 눌렀을때 (처음 눌렀을때)
         {
             await axios.post(`/review/recommend/${memberId}/${reviewId}`)
                 .then(resposne => {
                     console.log(resposne.data);
                     toast.success('따봉을 눌렀어요!');
+                    setIsRecommended(true);
                     fetchData();
                 })
-                .catch(error => {
-                    toast.error(error.response.data.message);
+                .catch(error => {   // 자기꺼 자기가 눌렀을때 나오는 500에러 
+                    // toast.error(error.response.data.message);
+                    toast.error("자신의 리뷰글에는 추천을 누를 수 없습니다");
+                    setIsRecommended(false); // 버튼을 계속 검정색으로 만들기
                     fetchData();
                 })
         }

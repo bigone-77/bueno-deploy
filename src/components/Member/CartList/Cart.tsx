@@ -3,9 +3,10 @@ import { RootState } from "../../../redux"
 import { useCallback, useEffect, useState } from "react"
 import { CartDataProps } from "../../../types/CartDataProps"
 import CartItem from "./CartItem"
-import axios from "axios"
+
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import axios from '../../../api/axios'
 
 const Cart = () => {
     const navigate = useNavigate();

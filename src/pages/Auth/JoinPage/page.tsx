@@ -6,8 +6,9 @@ import Button from "../../../components/utils/Button";
 import { Link, useNavigate } from "react-router-dom";
 import AddressInput from "../../../components/utils/AddressInput";
 import Container from "../../../components/utils/Container";
-import axios from "axios";
+
 import requests from "../../../api/requests";
+import axios from '../../../api/axios';
 
 const JoinPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -84,6 +85,7 @@ const JoinPage = () => {
                         disabled={isLoading}
                         register={register}
                         errors={errors}
+                        placeholder="전화번호 사이에 -은 빼주세요"
                         message="Please enter Phone Number"
                         required
                     />

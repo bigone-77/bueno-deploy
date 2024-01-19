@@ -5,10 +5,11 @@ import { useState } from "react";
 import UploadInput from "../../utils/Upload/UploadInput";
 import PreviewUpload from "../../utils/Upload/PreviewUpload";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { toast } from "react-toastify";
+import axios from '../../../api/axios';
 
 interface PostingProps {
     id: number;
@@ -33,14 +34,9 @@ const Posting = ({
 
     const [starNum, setStarNum] = useState(5);
     const [enteredText, setEnteredText] = useState('');
-    const [uploadedFileUrl, setUploadedFileUrl] = useState<string | null>(null);
+    const [uploadedFileUrl, setUploadedFileUrl] = useState<File | null>(null);
 
     const navigate = useNavigate();
-
-    const handleFileUrlChange = (url: string) => {
-        const modifiedUrl = url.split('.jpg')[0] + '.jpg';
-        setUploadedFileUrl(modifiedUrl);
-    }
 
     const postHandler = async () => {
 
@@ -51,9 +47,19 @@ const Posting = ({
         }
 
         console.log(data);
-        await axios.post(`/review/${memberId}/${id}`, data)
+
+        const formData = new FormData();
+        formData.append('image', uploadedFileUrl!);
+        formData.append('data',new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+
+        await axios.post(`/review/${memberId}/${id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => {
-                
                 toast.success("리뷰 등록이 완료되었습니다!");
                 setShowReviewForm(false);
                 fetchData();
@@ -114,8 +120,8 @@ const Posting = ({
             <div className="flex items-center">
                 <p className="w-1/6 text-lg font-bold">사진첨부</p>
                 <div className="flex flex-col gap-10">
-                    <UploadInput onFileUrlChange={handleFileUrlChange} />
-                    <PreviewUpload fileUrl={uploadedFileUrl} />
+                    <UploadInput setValue={setUploadedFileUrl}/>
+                    <PreviewUpload imageSrc={uploadedFileUrl} />
                 </div>
             </div>
 

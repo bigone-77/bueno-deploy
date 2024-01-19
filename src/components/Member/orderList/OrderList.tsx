@@ -1,10 +1,11 @@
-import axios from "axios"
+
 import { useSelector } from "react-redux"
 import { RootState } from "../../../redux"
 import { useEffect, useState } from "react";
 import { OrderListProps } from "../../../types/OrderListProps";
 import OrderItem from "./OrderItem";
 import { toast } from "react-toastify";
+import axios from '../../../api/axios';
 
 const OrderList = () => {
     const memberId = useSelector((state: RootState) => state.currentUser.id);

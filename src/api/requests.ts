@@ -1,7 +1,7 @@
 const requests = {
-    hotBueno: "http://43.200.178.27/products/hot",
+    hotBueno: "/products/hot",
     login: "/auth/login",
-    join: "http://43.200.178.27/auth/join",
+    join: "/auth/join",
 }
 
 export default requests;

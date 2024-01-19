@@ -1,6 +1,7 @@
-import axios from 'axios';
+
 import { useState } from 'react'
 import { toast } from 'react-toastify';
+import axios from '../../../api/axios';
 
 interface FindEmailProps {
   setId:  React.Dispatch<React.SetStateAction<string>>;

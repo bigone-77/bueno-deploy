@@ -18,7 +18,7 @@ interface PatchDataProps {
     reviewId: number;
     starNum: number;
     enteredText: string;
-    uploadedFileUrl: string | null;
+    uploadedFileUrl: File | null;
 }
 
 const ModifyReview = ({
@@ -31,17 +31,12 @@ const ModifyReview = ({
 }: ModifyReviewProps) => {
     const [starNum, setStarNum] = useState(5);
     const [enteredText, setEnteredText] = useState('');
-    const [uploadedFileUrl, setUploadedFileUrl] = useState<string | null>(null);
+    const [uploadedFileUrl, setUploadedFileUrl] = useState<File | null>(null);
 
     const navigate = useNavigate();
 
-    const handleFileUrlChange = (url: string) => {
-        const modifiedUrl = url.split('.jpg')[0] + '.jpg';
-        setUploadedFileUrl(modifiedUrl);
-    }
-
     const modifyHandler = ({
-        reviewId, starNum, enteredText, uploadedFileUrl
+        reviewId, starNum, enteredText
     }: PatchDataProps) => {
         const data = {
             "starRating": starNum,
@@ -102,8 +97,8 @@ const ModifyReview = ({
             <div className="flex items-center">
                 <p className="w-1/6 text-lg font-bold">사진첨부</p>
                 <div className="flex flex-col gap-10">
-                    <UploadInput onFileUrlChange={handleFileUrlChange} />
-                    <PreviewUpload fileUrl={uploadedFileUrl} />
+                    <UploadInput setValue={setUploadedFileUrl}/>
+                    <PreviewUpload imageSrc={uploadedFileUrl} />
                 </div>
             </div>
 

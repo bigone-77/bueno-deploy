@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Button from '../../../components/utils/Button';
 import { DevTool } from '@hookform/devtools';
 import { jwtDecode } from 'jwt-decode';
 import { SocialUserProps } from '../../../types/SocialUserProps';
+import axios from '../../../api/axios';
 
 const SocialJoin = () => {
     const [user, setUser] = useState<SocialUserProps>();
@@ -69,6 +70,7 @@ const SocialJoin = () => {
                         disabled={isLoading}
                         register={register}
                         errors={errors}
+                        placeholder="전화번호 사이에 -은 빼주세요"
                         message="Please enter Phone Number"
                         required
                     />

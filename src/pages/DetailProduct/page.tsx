@@ -6,13 +6,14 @@ import ProductWeightOption from '../../components/ProductWeightOption';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ProductProps } from '../../types/ProductProps';
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import { removeCartData } from '../../redux/slices/cartSlice';
 import { ProductReviewProps } from '../../types/DetailProduct/ProductReviewProps';
 import Reviews from '../../components/DetailProduct/Reviews';
 import Qna from '../../components/DetailProduct/Qna';
+import axios from '../../api/axios';
 
 const ProductDetailPage = () => {
     const [detailProductData, setDetailProductData] = useState<ProductProps>();

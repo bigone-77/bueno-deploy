@@ -1,9 +1,10 @@
-import axios from "axios";
+
 import { useState } from "react";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { RootState } from "../../redux";
+import axios from '../../api/axios';
 
 interface QnaModalProps {
     modalIsOpen: boolean;

@@ -13,6 +13,7 @@ interface InputProps {
     minLength?: number;
     errors: FieldErrors
     message?: string;
+    placeholder?: string;
 }
 
 const Input:React.FC<InputProps> = ({
@@ -25,7 +26,8 @@ const Input:React.FC<InputProps> = ({
     pattern,
     minLength,
     errors,
-    message
+    message,
+    placeholder
 }) => {
     const hasError = errors[id] !== undefined;
     return (
@@ -39,7 +41,7 @@ const Input:React.FC<InputProps> = ({
                     pattern,
                     minLength
                 })}
-                placeholder=''
+                placeholder={placeholder}
                 type={type}
                 className={`
                     w-full

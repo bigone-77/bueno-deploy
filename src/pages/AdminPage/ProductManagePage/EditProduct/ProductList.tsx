@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { ProductProps } from "../../../../types/ProductProps"
 import ModifyProduct from "./ModifyProduct";
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
+import axios from '../../../../api/axios';
 
 interface ProductListProps extends ProductProps{
     index: number;

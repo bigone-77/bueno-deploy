@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/utils/Container";
 import { useEffect } from "react";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { removeProduct, setProduct } from "../../redux/slices/productSlice";
 import { RootState } from "../../redux";
@@ -9,6 +9,7 @@ import { AiFillFire } from "react-icons/ai";
 import ProductCard from "../../components/ProductCard";
 import useSearchProduct from "../../utils/useSearchProduct";
 import EmptyState from "../../components/utils/EmptyState";
+import axios from '../../api/axios';
 
 const SearchPage = () => {
     const navigate = useNavigate();
