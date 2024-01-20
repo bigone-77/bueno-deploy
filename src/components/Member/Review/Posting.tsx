@@ -43,17 +43,18 @@ const Posting = ({
         const data = {
             "starRating": starNum,
             "comment": enteredText,
-            "reviewImage": uploadedFileUrl
         }
 
-        console.log(data);
-
         const formData = new FormData();
-        formData.append('image', uploadedFileUrl!);
-        formData.append('data',new Blob([JSON.stringify(data)], {
+        formData.append('data', new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
 
+        if (uploadedFileUrl) {
+            formData.append('image', uploadedFileUrl);
+        }
+        console.log(formData);
+        
         await axios.post(`/review/${memberId}/${id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

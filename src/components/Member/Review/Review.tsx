@@ -41,10 +41,13 @@ const Review = () => {
         };
 
         const formData = new FormData();
-        formData.append('image', reviewImage!);
         formData.append('data', new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
+
+        if (reviewImage) {
+            formData.append('image', reviewImage);
+        }
         
         await axios.patch(`/review/${reviewId}`, formData, {
             headers: {
@@ -61,7 +64,7 @@ const Review = () => {
     }
 
     const deleteHandler = async (reviewId: number) => {
-        await axios.delete(`/review/${reviewId}`)
+        await axios.delete(`/review/${reviewId}/${memberId}`)
             .then(response => {
                 toast.success("해당 리뷰글이 삭제되었습니다!");
                 fetchData();

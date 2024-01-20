@@ -82,7 +82,7 @@ const SecondCard = ({
                         <span className="text-blue-400">{maxPoint}</span>원)
                     </div>
                 </div>
-                <p className='font-light text-rose-200'>구매하시려는 상품이 5000원부터 적립 가능합니다</p>
+                <p className='font-light text-rose-200'>5000원 미만의 상품은 포인트 적립이 불가능합니다.</p>
             </td>
             <td className="text-center">{itemCount}</td>
             {/* <td className="text-center">{(totalPrice/100)}</td> */}

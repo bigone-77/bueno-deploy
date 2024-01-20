@@ -56,12 +56,12 @@ const OrderItem = ({
                 <td className="text-center">
                     <p className={`
                             py-3 
-                            ${status === "RELEASE" || "REV_COMP" ? 'bg-green-400' : 'bg-rose-400'}
+                            ${status === "RELEASE" || status === "REV_COMP" ? 'bg-green-400' : 'bg-rose-400'}
                             rounded-md 
                             font-semibold
                         `}
                     >
-                        {(status === "RELEASE" || "REV_COMP") ? "구매 완료" : "결제 취소"}
+                        {(status === "RELEASE" || status === "REV_COMP") ? "구매 완료" : "결제 취소"}
                     </p>
                     <button className={`
                         ${status === "RELEASE" ? 'block' : 'hidden'}

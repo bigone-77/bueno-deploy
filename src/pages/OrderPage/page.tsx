@@ -67,6 +67,11 @@ const OrderPage = () => {
                     "orderNum": orderNum.slice(0,10)
                 };
 
+                if (data.email === "" || data.memo === "") {
+                    toast.error("빈 항목이 있습니다");
+                    return;
+                }
+
             console.log(data);
             await axios.post(`/order/${memberId}`,data)
                 .then(response => {
