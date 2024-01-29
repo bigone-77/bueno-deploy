@@ -42,6 +42,7 @@ const ReviewList = ({
             await axios.patch(`/review/${memberId}/${reviewId}`)
                 .then(response => {
                     toast.success('따봉을 취소했습니다.');
+                    setIsRecommended(false);
                     fetchData();
                 })
                 .catch(error => {
@@ -82,7 +83,8 @@ const ReviewList = ({
             </div>
 
             <span>
-                <img src={img} alt={img} className="object-cover w-20 h-24 rounded-md"/>
+                {img!.length > 10 && <img src={img} alt={img} className="object-cover w-20 h-24 rounded-md"/>}
+                
                 <p className="my-10">{comment}</p>
             </span>
 

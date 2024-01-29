@@ -1,22 +1,16 @@
-import { IconType } from "react-icons"
-import { ProductProps } from "../types/ProductProps"
 import CartButton from "./ShoppingCart/CartButton";
 import { useNavigate } from "react-router-dom";
 import HeartButton from "./utils/HeartButton";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
-
-interface ProductCardProps extends ProductProps {
-    icon: IconType;
-}
+import { ProductProps } from '../types/ProductProps';
 
 const ProductCard = ({
     id,
     name,
     price,
     image,
-    icon: Icon 
-}: ProductCardProps) => {
+}: ProductProps) => {
 
     const navigate = useNavigate();
     const userId = useSelector((state: RootState) => state.currentUser.id);
@@ -35,10 +29,6 @@ const ProductCard = ({
             </div>
             <div className="cursor-pointer" onClick={handleClick} >
                 <div className=" border rounded-lg w-[286px] h-[320px] bg-gray-200">
-                    <Icon 
-                        size={25} 
-                        className="absolute top-2 left-3"
-                    />
                     <img src={image} alt="bueno-img" className="px-2 pt-12 object-fit" />
                 </div>
                 <span className="flex flex-col items-start justify-center mt-4">

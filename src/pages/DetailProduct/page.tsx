@@ -51,20 +51,24 @@ const ProductDetailPage = () => {
         if (disabled) {
             toast.warn("옵션을 선택해주세요")
         } else {
-            try {
-                const response = await axios.post(`/products/putCart/${memberId}/${params.productId}`,{
-                    memberId,
-                    itemId: params.productId,
-                    itemCount,
-                    totalPrice,
-                    itemOption
-                });
-                toast.success('해당 상품이 장바구니에 담겼습니다!')
-                console.log(response.data);
-                dispatch(removeCartData());
-                navigate('/member/mypage/cart');
-            }   catch (error) {
-                toast.error(String("이미 장바구니에 있는 상품입니다."));
+            if (memberId) {
+                try {
+                    const response = await axios.post(`/products/putCart/${memberId}/${params.productId}`,{
+                        memberId,
+                        itemId: params.productId,
+                        itemCount,
+                        totalPrice,
+                        itemOption
+                    });
+                    toast.success('해당 상품이 장바구니에 담겼습니다!')
+                    console.log(response.data);
+                    dispatch(removeCartData());
+                    navigate('/member/mypage/cart');
+                }   catch (error) {
+                    toast.error(String("이미 장바구니에 있는 상품입니다."));
+                }
+            } else {
+                toast.warn("로그인이 필요한 서비스입니다.");
             }
         }
     }

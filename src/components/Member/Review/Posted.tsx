@@ -30,7 +30,7 @@ const Posted = ({
         <div className="px-10 py-5 mb-10 border-4 rounded-md">
             {!showModify && <><div className="flex items-center justify-between">
                 <span className="flex gap-6 text-start">
-                    <img src={itemImage} alt={itemImage} className="object-cover w-24 h-28"/>
+                    {itemImage.length > 10 && <img src={itemImage} alt={itemImage} className="object-cover w-24 h-28"/>}
                     <div>
                         <p 
                             className="mt-4 font-bold hover:cursor-pointer"
@@ -68,7 +68,7 @@ const Posted = ({
 
             <p>{comment}</p>
 
-            {reviewImage &&
+            {reviewImage!.length > 10 &&
             <>
             <div className="my-10"/>
 

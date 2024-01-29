@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/slices/currentUserSlice';
 import axios from '../../../api/axios';
+import { setCookie } from '../../../hooks/useCookies';
+
 
 const SocialAuthPage = () => {
   const location = useLocation();
@@ -37,7 +39,7 @@ const SocialAuthPage = () => {
   useEffect(() => {
     if (accessToken && refreshToken) {
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+      setCookie("refreshToken",refreshToken, { path: "/"} );
       postHandler();
     }
   }, []);

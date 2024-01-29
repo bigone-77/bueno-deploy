@@ -92,6 +92,7 @@ const OrderItem = ({
                     date={date.slice(0,10)}
                     setShowReviewForm={setShowReviewForm}
                     fetchData={fetchData}
+                    orderNum={orderNum}
                 />
                 </>}
             <hr className="w-screen"/>

@@ -33,17 +33,18 @@ const Qna = () => {
             
             <div className="p-2">
                 <div className="border-r-2">
-                    <p className='pt-2 pl-40 font-bold text-blue-500 cursor-pointer text-start'>편집</p>
                     {qnaData.length > 0 ? 
                         <>
                             {qnaData.map((data, index) => (
                                 <QuestionList 
                                     key={index}
                                     id={data.id}
+                                    memberId={memberId}
                                     img={data.image}
                                     itemName={data.itemName}
                                     date={data.qnaTime}
                                     status={data.qnaStatus}
+                                    fetchData={fetchData}
                                 />
                             ))}
                         </>

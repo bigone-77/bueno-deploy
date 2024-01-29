@@ -1,6 +1,4 @@
 import ProductCard from "./ProductCard";
-
-import { AiFillFire } from "react-icons/ai";
 import { useCallback, useEffect } from "react";
 
 import { setProduct } from '../redux/slices/productSlice';
@@ -47,7 +45,6 @@ const Row = ({
                             name={product.name}
                             price={product.price}
                             image={product.image}
-                            icon={AiFillFire}
                         />
                     </span>
                 ))}

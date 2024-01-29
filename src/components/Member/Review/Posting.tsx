@@ -16,6 +16,7 @@ interface PostingProps {
     img: string;
     name: string;
     option?: string;
+    orderNum: string;
     date?: string;
     setShowReviewForm: React.Dispatch<React.SetStateAction<boolean>>;
     fetchData: () => Promise<void>;
@@ -26,6 +27,7 @@ const Posting = ({
     img,
     name,
     option,
+    orderNum,
     date,
     setShowReviewForm,
     fetchData,
@@ -34,7 +36,7 @@ const Posting = ({
 
     const [starNum, setStarNum] = useState(5);
     const [enteredText, setEnteredText] = useState('');
-    const [uploadedFileUrl, setUploadedFileUrl] = useState<File | null>(null);
+    const [uploadedFileUrl, setUploadedFileUrl] = useState<any>(null);
 
     const navigate = useNavigate();
 
@@ -43,6 +45,7 @@ const Posting = ({
         const data = {
             "starRating": starNum,
             "comment": enteredText,
+            "orderNum": orderNum
         }
 
         const formData = new FormData();
@@ -50,10 +53,16 @@ const Posting = ({
             type: "application/json"
         }));
 
-        if (uploadedFileUrl) {
+        let ran = "";
+
+        if (uploadedFileUrl){
             formData.append('image', uploadedFileUrl);
+        } else {
+            formData.append('image', ran);
         }
-        console.log(formData);
+        
+        console.log(formData.get('image'));
+        
         
         await axios.post(`/review/${memberId}/${id}`, formData, {
             headers: {

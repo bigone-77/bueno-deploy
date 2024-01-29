@@ -26,10 +26,14 @@ const OrderPage = () => {
 
     const [memo, setMemo] = useState('');   // memo
     const [memberEmail, setMemberEmail] = useState('');
+    const [cartId, setCartId] = useState(0);
 
     const fetchData = async () => {
         try {
             const response = await axios.get(`/order/${memberId}`);
+            console.log(response);
+            setCartId(response.data.cartId);
+            
             setUserData(response.data.orderMemberInfo);
 
             const plusProductList = response.data.orderItemList.map((item:OrderItemListProps[]) => {
@@ -73,7 +77,7 @@ const OrderPage = () => {
                 }
 
             console.log(data);
-            await axios.post(`/order/${memberId}`,data)
+            await axios.post(`/order/${memberId}/${cartId}`,data)
                 .then(response => {
                     console.log(response.data);
                     toast.success("주문이 완료되었습니다!");

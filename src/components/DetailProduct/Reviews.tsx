@@ -41,7 +41,7 @@ const Reviews = ({
                         className="flex items-center gap-2 mt-12"
                         key={d.id}
                     >
-                        <img src={d.reviewImage} alt={d.reviewImage} className="object-cover h-32 rounded-md w-28"/>
+                        {d.reviewImage!.length > 10 && <img src={d.reviewImage} alt={d.reviewImage} className="object-cover h-32 rounded-md w-28"/>}
                     </span>
                 ))}
 

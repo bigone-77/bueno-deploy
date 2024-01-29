@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import QnaModal from './QnaModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import { useNavigate } from 'react-router-dom';
 
 interface QnaProps {
   productId?: any;
@@ -8,7 +11,20 @@ interface QnaProps {
 const Qna = ({
   productId,
 }: QnaProps) => {
+  const navigate = useNavigate();
+  const memberId = useSelector((state: RootState) => state.currentUser.id);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const clickHandler = () => {
+    if (memberId) {
+      setModalIsOpen(true);
+    } else {
+      if(window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")) {
+        navigate('/auth/login');
+      }
+    }
+  }
 
   return (
     <div className='px-10'>
@@ -18,7 +34,8 @@ const Qna = ({
           <p className="text-2xl font-bold">상품문의</p>
           <button 
               className='w-40 text-white bg-blue-300'
-              onClick={() => setModalIsOpen(true)}
+              // onClick={() => setModalIsOpen(true)}
+              onClick={clickHandler}
           >
               문의 하기
           </button>

@@ -32,36 +32,40 @@ const useFavorite = ({ userId, productId }: UseFavorite) => {
     
     const toggleFavorite = (async (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
-        if (!userId) {
-            navigate('/auth/login');
-        }
-        try {
-            if (hasFavorite) {
-                axios.delete(`/products/favorites/${userId}/${productId}`)
-                    .then((response) => {
-                        console.log(response.data);
-                        getFetchFavorites(); 
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    }
-                    )
-            } else {
-                axios.post(`/products/favorites/${userId}/${productId}`, {
-                    'userId': userId,
-                    'productId': productId
-                })
-                    .then((response) => {
-                        console.log(response.data);
-                        getFetchFavorites(); 
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
+        if (userId === 0) {
+            if(window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")) {
+                navigate('/auth/login');
+                return;
             }
-        } catch(error) {
-            console.log(error);
-        }
+        } else {
+            try {
+                if (hasFavorite) {
+                    axios.delete(`/products/favorites/${userId}/${productId}`)
+                        .then((response) => {
+                            console.log(response.data);
+                            getFetchFavorites(); 
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        }
+                        )
+                } else {
+                    axios.post(`/products/favorites/${userId}/${productId}`, {
+                        'userId': userId,
+                        'productId': productId
+                    })
+                        .then((response) => {
+                            console.log(response.data);
+                            getFetchFavorites(); 
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                }
+            } catch(error) {
+                console.log(error);
+            }
+    }
     })
 
     useEffect(() => {

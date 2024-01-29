@@ -72,7 +72,7 @@ const CartItem = ({
             </td>
             <td className="text-center">{resultPrice}</td>
             <td className="text-center">{count}</td>
-            <td className="text-center">{resultPrice} ({resultPrice/20}P)</td>
+            <td className="text-center">{resultPrice} ({resultPrice/100}P)</td>
             <td className="text-center">
                 <button className="mb-2 bg-blue-400" onClick={() => setShowEdit(true)}>수량변경</button>
                 <button onClick={() => deleteHandler(id)}>삭제</button>
